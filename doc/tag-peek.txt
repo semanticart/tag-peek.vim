@@ -1,0 +1,114 @@
+*tag-peek* peek at tag definitions
+
+  _______            _____          _        ~
+ |__   __|          |  __ \        | |       ~
+    | | __ _  __ _  | |__) |__  ___| | __    ~
+    | |/ _` |/ _` | |  ___/ _ \/ _ \ |/ /    ~
+    | | (_| | (_| | | |  |  __/  __/   <     ~
+    |_|\__,_|\__, | |_|   \___|\___|_|\_\    ~
+              __/ |                          ~
+             |___/                           ~
+
+====================================================================
+CONTENTS                                        *TagPeekContents*
+
+    1. Usage ................ |TagPeekUsage|
+    2. Default Mappings...... |TagPeekDefaultMappings|
+    3. Configuration ........ |TagPeekConfiguration|
+    4. License .............. |TagPeekLicense|
+    5. Bugs ................. |TagPeekBugs|
+    6. Contributing ......... |TagPeekContributing|
+    7. Changelog ............ |TagPeekChangelog|
+
+
+====================================================================
+Section 1: Usage                                   *TagPeekUsage*
+
+Install the plugin via your preferred plugin manager, manually, etc.
+
+Assuming you have ctags properly setup, map a command to peek at the tag under
+the cursor, e.g.
+
+>
+  nnoremap <leader>q :call tag_peek#ShowTag()<CR>
+<
+
+You can also invoke the function directly to view a specific tag definition.
+e.g. to view the tag "delete" you could do `:call tag_peek#ShowTag("delete")`
+
+
+====================================================================
+Section 2: Default Mappings              *TagPeekDefaultMappings*
+
+Unless you opt-out of mappings (via `let g:tag_peek_mappings=0`), the following
+normal-mode key mappings will be setup for the preview window:
+
+`q`     Close the preview window
+`<c-n>` Jump to the next definition of the tag
+`<c-p>` Jump to the previous definition of the tag
+`<c-e>` Edit the currently previewed file in a split
+
+
+====================================================================
+Section 3: Configuration                   *TagPeekConfiguration*
+
+This plugin aims to have reasonable defaults but a few configuration variables
+are provided for power-users.
+
+g:tag_peek_mappings                         *g:tag_peek_mappings*
+
+Can be set to `0` to opt-out of the default preview mappings.
+
+g:tag_peek_split_command               *g:tag_peek_split_command*
+
+Controls how a split is opened from the preview window (this is 'vsplit' by
+default but you might prefer 'split' or 'tabnew')
+
+g:tag_peek_float_config                 *g:tag_peek_float_config*
+
+Allows you to provide a custom function name to control the `config` passed to
+control the display of the preview window. See below for an example and `:help
+nvim_open_win` for more info.
+
+Example `g:tag_peek_float_config` usage:
+
+>
+      function! MyFloatConfig()
+      return {
+              \ 'relative': 'editor',
+              \ 'row': 10,
+              \ 'col': 10,
+              \ 'width': 80,
+              \ 'height': 20
+              \ }
+      endfunction
+
+      let g:tag_peek_float_config="MyFloatConfig"
+<
+
+
+====================================================================
+Section 4: License                               *TagPeekLicense*
+
+MIT
+
+
+====================================================================
+Section 5: Bugs                                     *TagPeekBugs*
+
+If you find a bug please post it on the issue tracker:
+https://github.com/semanticart/tag-peek.vim
+
+
+====================================================================
+Section 6: Contributing                     *TagPeekContributing*
+
+If you have an idea for how to make this better, please fork the repo and send
+a pull-request to start a discussion.
+
+
+====================================================================
+Section 7: Changelog                           *TagPeekChangelog*
+
+v 1.0
+    *First stable release*
