@@ -2,6 +2,8 @@
 
 A neovim plugin for peeking at tag definitions using the `nvim_open_win` "floating window" feature.
 
+![example usage](https://user-images.githubusercontent.com/8633/58834097-7c0fda80-8620-11e9-9c86-15ab8fe0ad4e.gif)
+
 ## Usage
 
 Assuming you have installed this plugin and have ctags properly setup, map a command to peek at the tag under the cursor
