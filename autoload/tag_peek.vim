@@ -26,6 +26,9 @@ function! s:DefaultFloatConfig()
 endfunction
 
 function! s:FloatPeek()
+    let current_buffer = bufnr('%')
+    let current_line = line('.')
+
     " swap to preview
     wincmd P
     let save_pos = getpos('.')
@@ -33,6 +36,11 @@ function! s:FloatPeek()
     let num = bufnr('%')
     " close the preview
     pclose
+
+    if save_pos[1] == current_line && current_buffer == num
+      echo "You're on the definition."
+      return
+    end
 
     " float the peek
     if exists('g:tag_peek_float_config')
